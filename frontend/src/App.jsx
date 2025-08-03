@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import Login from './pages/Login'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import Signup from './pages/signup'
+import Signup from './pages/Signup'
 import Home from './pages/Home'
 import TaskDetails from './pages/TaskDetails'
 import EditTask from './pages/Edittask'
