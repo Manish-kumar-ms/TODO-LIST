@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './Navbar';
 import socket from '../Socket';
+import { UserDataContext } from '../context/UserContext';
 
 const EditTask = () => {
   const { taskId } = useParams();
@@ -14,6 +15,7 @@ const EditTask = () => {
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+   const { serverUrl } = useContext(UserDataContext);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -25,7 +27,7 @@ const EditTask = () => {
   useEffect(() => {
     const fetchTask = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/api/tasks/gettask/${taskId}`, {
+        const res = await axios.get(`${serverUrl}/api/tasks/gettask/${taskId}`, {
           withCredentials: true,
         });
         setTask(res.data.task);
@@ -43,7 +45,7 @@ const EditTask = () => {
 
     const fetchUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/auth/getuser', {
+        const res = await axios.get(`${serverUrl}/api/auth/getuser`, {
           withCredentials: true,
         });
         setUsers(res.data.users || []);
@@ -54,7 +56,7 @@ const EditTask = () => {
 
     const fetchCurrentUser = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/auth/currentuser', {
+        const res = await axios.get(`${serverUrl}/api/auth/currentuser`, {
           withCredentials: true,
         });
         setCurrentUser(res.data.user);
@@ -91,7 +93,7 @@ const EditTask = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:8000/api/tasks/edittask/${taskId}`,
+        `${serverUrl}/api/tasks/edittask/${taskId}`,
         {
           ...formData,
           ...(isCreator && { assignedTo: selectedUsers.map(user => user._id) }),

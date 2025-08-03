@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { handleError, handleSucess } from '../../Utils.js'
+import { UserDataContext } from '../context/UserContext.jsx'
 
 const Signup = () => {
     const [signupInfo,setsignInfo]=useState({
@@ -10,6 +11,8 @@ const Signup = () => {
         email :"",
         password:"",
     })
+
+    const { serverUrl } = useContext(UserDataContext);
 
     const navigate=useNavigate()
 
@@ -26,7 +29,7 @@ const Signup = () => {
       }
 
       try {
-        const response = await axios.post('http://localhost:8000/api/auth/signup',{
+        const response = await axios.post(`${serverUrl}/api/auth/signup`,{
             name,
             email,
             password

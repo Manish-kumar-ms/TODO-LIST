@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './Navbar';
-import socket from '../Socket';
+
+import { UserDataContext } from '../context/UserContext';
 
 const AddTask = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const AddTask = () => {
     description: '',
     priority: '',
   });
-
+  const { serverUrl } = useContext(UserDataContext);
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [search, setSearch] = useState('');
@@ -21,7 +22,7 @@ const AddTask = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/auth/getuser', {
+        const res = await axios.get(`${serverUrl}/api/auth/getuser`, {
           withCredentials: true,
         });
         setUsers(res.data.users || []);
@@ -41,7 +42,7 @@ const AddTask = () => {
     e.preventDefault();
     try {
       await axios.post(
-        'http://localhost:8000/api/tasks/addtask',
+        `${serverUrl}/api/tasks/addtask`,
         {
           ...formData,
           assignedTo: selectedUsers.map(user => user._id),

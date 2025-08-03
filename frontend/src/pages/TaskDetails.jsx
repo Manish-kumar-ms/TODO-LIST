@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { handleError } from "../../Utils";
 import Navbar from "./Navbar";
 import socket from "../Socket";
+import { UserDataContext } from "../context/UserContext";
 
 const TaskDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [task, setTask] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-
+  const { serverUrl } = useContext(UserDataContext);
   useEffect(() => {
     const fetchTask = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/tasks/gettask/${id}`,
+          `${serverUrl}/api/tasks/gettask/${id}`,
           { withCredentials: true }
         );
         setTask(res.data.task);
@@ -26,7 +27,7 @@ const TaskDetails = () => {
 
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/auth/currentuser", {
+        const res = await axios.get(`${serverUrl}/api/auth/currentuser`, {
           withCredentials: true,
         });
         setCurrentUser(res.data.user);
@@ -62,7 +63,7 @@ const TaskDetails = () => {
   const handleDelete = async () => {
     try {
       const res = await axios.delete(
-        `http://localhost:8000/api/tasks/deletetask/${id}`,
+        `${serverUrl}/api/tasks/deletetask/${id}`,
         {
           withCredentials: true,
         }

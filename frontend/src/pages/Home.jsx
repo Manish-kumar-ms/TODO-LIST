@@ -1,18 +1,20 @@
 // Home.jsx
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar"; // ✅ import the Navbar
-import socket from "../Socket";
+import socket from "../Socket"; 
+import { UserDataContext } from "../context/UserContext";
 const Home = () => {
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
+  const { serverUrl } = useContext(UserDataContext);
 
   useEffect(() => {
     const fetchTasks = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/tasks/getalltasks",
+          `${serverUrl}/api/tasks/getalltasks`,
           {
             withCredentials: true,
           }
@@ -33,7 +35,7 @@ const Home = () => {
       setEvents((prev) =>
         prev.map((task) => (task._id === updatedTask._id ? updatedTask : task))
       );
-    });
+    }); 
 
     socket.on("taskAdded", (newTask)=>{
       setEvents((prev) => [...prev, newTask]);

@@ -9,7 +9,7 @@ export const UserDataContext = createContext();
 
 const UserContext = ({ children }) => {
 
-    const serverUrl = 'http://localhost:8000'
+    const serverUrl = "http://localhost:8000"
     const [userData, setUserData] = useState(null);
 
 

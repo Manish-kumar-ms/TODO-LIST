@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
+import { UserDataContext } from "../context/UserContext";
 
 const ActionLog = () => {
   const { id } = useParams(); // taskId from URL
   const [logs, setLogs] = useState([]); // ✅ initialize as empty array
   const [loading, setLoading] = useState(true);
+  const {serverUrl} = useContext(UserDataContext)
 
   const fetchLogs = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/tasks/getallactionlogsbyId/${id}`, {
+      const res = await axios.get(`${serverUrl}/api/tasks/getallactionlogsbyId/${id}`, {
         withCredentials: true,
       });
 

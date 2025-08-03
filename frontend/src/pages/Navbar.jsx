@@ -8,12 +8,12 @@ import { UserDataContext } from "../context/UserContext";
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const { userData, setUserData } = useContext(UserDataContext);
+  const { userData, setUserData, serverUrl } = useContext(UserDataContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8000/api/auth/logout", {}, { withCredentials: true });
+      await axios.post(`${serverUrl}/api/auth/logout`, {}, { withCredentials: true });
       setUserData(null);
       navigate("/login");
     } catch (err) {

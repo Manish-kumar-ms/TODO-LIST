@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { UserDataContext } from "../context/UserContext";
 
 const AssignedTasks = () => {
   const navigate = useNavigate();
   const [assignedTasks, setAssignedTasks] = useState([]);
   const [user, setUser] = useState({ name: "", email: "" });
-
+  const { serverUrl } = useContext(UserDataContext);
   useEffect(() => {
     const fetchAssignedTasks = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/tasks/getallAssignedTasks", {
+        const res = await axios.get(`${serverUrl}/api/tasks/getallAssignedTasks`, {
           withCredentials: true,
         });
         setAssignedTasks(res.data.tasks);

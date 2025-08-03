@@ -1,18 +1,20 @@
 // Profile.jsx
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { UserDataContext } from "../context/UserContext";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [userTasks, setUserTasks] = useState([]);
   const navigate = useNavigate();
+  const { serverUrl } = useContext(UserDataContext);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/auth/currentuser",
+          `${serverUrl}/api/auth/currentuser`,
           {
             withCredentials: true,
           }
