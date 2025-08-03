@@ -23,7 +23,7 @@ const server = http.createServer(app);
 //  Setup Socket.IO server
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: 'https://todo-list-frontend-z1sd.onrender.com',
     credentials: true,
   },
 });
@@ -41,7 +41,7 @@ app.get('/',(req,res)=>{
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://todo-list-frontend-z1sd.onrender.com',
     credentials: true
 }));
 
