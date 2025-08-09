@@ -5,7 +5,8 @@ import axios from 'axios';
 export const UserDataContext = createContext();
 
 const UserContext = ({ children }) => {
-  const serverUrl = "http://localhost:8000";
+  const serverUrl = "https://todo-list-pe1w.onrender.com";
+  
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true); // 🔁 Add loading flag
 
