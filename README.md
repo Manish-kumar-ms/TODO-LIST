@@ -8,6 +8,11 @@ A **real-time task management application** built with the **MERN stack** that a
 
 ---
 
+## 🌐 Live Demo
+
+- **Frontend**: [https://todo-list-frontend-z1sd.onrender.com](https://todo-list-frontend-z1sd.onrender.com)  
+- **Backend**: [https://todo-list-pe1w.onrender.com](https://todo-list-pe1w.onrender.com)
+
 ## 🚀 Features
 
 ### 🔹 Authentication & User Management
