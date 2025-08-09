@@ -78,7 +78,7 @@ Create a `.env` file in the `backend` directory:
 PORT=8000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
-CLIENT_URL=http://localhost:3000
+
 ```
 
 ---
@@ -105,19 +105,10 @@ npm start
 - `taskCreated` → Broadcasts when a task is added.  
 - `taskUpdated` → Broadcasts when a task is updated.  
 - `taskDeleted` → Broadcasts when a task is removed.  
-
-### **Client Events**
-- `joinRoom` → Join a task room for real-time action log updates.  
-- `leaveRoom` → Leave a task room when not viewing it.  
+  
 
 ---
 
-## 📸 Screenshots
 
-> *(Add screenshots here — e.g., Dashboard, Task Details with Action Log, Real-Time Updates)*  
-
----
-
-## 📜 License
 
 This project is licensed under the **MIT License**.  
