@@ -10,8 +10,8 @@ A **real-time task management application** built with the **MERN stack** that a
 
 ## 🌐 Live Demo
 
-- **Frontend**: [https://ai-powered-docs-hub-frontend.onrender.com](https://ai-powered-docs-hub-frontend.onrender.com)  
-- **Backend**: [https://ai-powered-docs-hub-backend.onrender.com](https://ai-powered-docs-hub-backend.onrender.com)
+- **Frontend**: [https://todo-list-frontend-z1sd.onrender.com](https://todo-list-frontend-z1sd.onrender.com)  
+- **Backend**: [https://todo-list-pe1w.onrender.com](https://todo-list-pe1w.onrender.com)
 
 ## 🚀 Features
 
